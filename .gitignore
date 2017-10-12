@@ -1,0 +1,14 @@
+.idea/*
+.installed.cfg
+.mr.developer.cfg
+develop-eggs/
+eggs/
+etc/
+include/
+lib/
+parts/
+share/
+bin/
+local/
+pip-selfcheck.json
+src/
