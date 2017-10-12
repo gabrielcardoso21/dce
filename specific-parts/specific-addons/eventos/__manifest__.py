@@ -12,8 +12,12 @@
     'depends': [
     ],
     'data': [
-        'security/evento.xml',
+        'security/security.xml',
+        'security/ir.model.access.csv',
         'views/evento.xml',
+        'views/atracao.xml',
+        'views/artista.xml',
+        'views/responsavel.xml',
     ],
     'demo': [
     ],

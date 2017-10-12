@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2017 Gabriel Cardoso de Faria
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record model="ir.ui.view" id="artista_form_view">
+        <field name="name">artista.form</field>
+        <field name="model">artista</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <group>
+                            <field name="tipo"/>
+                        </group>
+                        <group>
+                            <field name="estilo_musical"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="integrantes"/>
+                            <field name="cortesias"/>
+                        </group>
+                        <group>
+                            <field name="contato"/>
+                            <field name="nome_contato"/>
+                            <field name="tipo_contato"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Apresentações:">
+                            <field name="apresentacao_ids" readonly="True">
+                                <tree>
+                                    <field name="festa_id"/>
+                                    <field name="local"/>
+                                    <field name="horario_inicio" widget="float_time"/>
+                                    <field name="horario_termino" widget="float_time"/>
+                                    <field name="cache"/>
+                                    <field name="lanches"/>
+                                    <field name="cortesias"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="artista_tree_view">
+        <field name="name">artista.tree</field>
+        <field name="model">artista</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="tipo"/>
+                <field name="estilo_musical"/>
+                <field name="integrantes"/>
+                <field name="cortesias"/>
+                <field name="contato"/>
+                <field name="nome_contato"/>
+                <field name="tipo_contato"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="lista_artistas_action">
+        <field name="name">Artistas</field>
+        <field name="res_model">artista</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+
+    <menuitem name="Artistas" id="lista_artistas" parent="planejamento_eventos"
+              action="lista_artistas_action"/>
+
+</odoo>
