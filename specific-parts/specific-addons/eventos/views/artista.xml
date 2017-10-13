@@ -12,11 +12,7 @@
                 <sheet>
                     <div>
                         <h1>
-                            <label for="name" class="oe_inline"/>
-                            <field name="name"/>
-                            <br/>
-                            <label for="nome_completo" class="oe_inline"/>
-                            <field name="nome_completo"/>
+                            <field name="name" placeholder="Nome artístico"/>
                         </h1>
                     </div>
                     <group>
@@ -31,17 +27,11 @@
                         <group>
                             <field name="integrantes"/>
                             <field name="cortesias"/>
-                            <field name="cpf"/>
-                            <field name="rg"/>
-                            <field name="endereco"/>
                         </group>
                         <group>
                             <field name="contato"/>
                             <field name="nome_contato"/>
-                            <field name="sexo"/>
                             <field name="tipo_contato"/>
-                            <field name="bairro"/>
-                            <field name="cep"/>
                         </group>
                     </group>
                     <notebook>
@@ -57,6 +47,21 @@
                                     <field name="cortesias"/>
                                 </tree>
                             </field>
+                        </page>
+                        <page string="Dados contratuais">
+                            <group>
+                                <group string="Dados pessoais">
+                                    <field name="nome_completo"/>
+                                    <field name="sexo" attrs="{'invisible': [('tipo', '=', 'banda')]}"/>
+                                    <field name="cpf"/>
+                                    <field name="rg"/>
+                                </group>
+                                <group string="Endereço">
+                                    <field name="endereco"/>
+                                    <field name="bairro"/>
+                                    <field name="cep"/>
+                                </group>
+                            </group>
                         </page>
                     </notebook>
                 </sheet>

@@ -46,7 +46,10 @@ class Artista(models.Model):
         selection=[
             ('o', 'Masculino'),
             ('a', 'Feminino'),
-        ]
+        ],
+        compute='_compute_sexo',
+        readonly=False,
+        store=True,
     )
     estilo_musical = fields.Selection(
         string=u'Estilo Musical: ',
@@ -85,6 +88,18 @@ class Artista(models.Model):
             ('agencia', u'Agência')
         ]
     )
+    
+    @api.depends('tipo')
+    def _compute_sexo(self):
+        for artista in self:
+            if artista.tipo == 'banda':
+                artista.sexo = 'a'
+                
+    @api.multi
+    def write(self, vals):
+        if self.tipo == 'banda' and vals.get('tipo') == 'dj':
+            super(Artista, self).write({'tipo': vals.pop('tipo')})
+        return super(Artista, self).write(vals)
 
     @api.onchange('apresentacao_ids')
     def _compute_cortesias(self):

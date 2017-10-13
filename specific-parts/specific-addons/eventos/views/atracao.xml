@@ -18,7 +18,6 @@
                 <field name="cache"/>
                 <field name="lanches"/>
                 <field name="cortesias"/>
-                <button name="%(report_atracao_py3o)d" string="Gerar Contrato" type="action"/>
             </tree>
         </field>
     </record>
@@ -29,17 +28,16 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
-                    <group>
-                        <field name="festa_id"/>
-                        <group>
-                            <field name="artista_id"/>
-                            <field name="cache"/>
-                        </group>
-                        <group>
-                            <field name="cache_ext"/>
-                            <field name="data_extra_combinada"/>
-                        </group>
-                    </group>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="%(report_atracao_py3o)d" string="Gerar Contrato" type="action" class="oe_stat_button" 
+                                icon="fa-file-text"/>
+                    </div>
+                    <h1>
+                        <field name="festa_id" placeholder="Nome da festa"/>
+                    </h1>
+                    <h2>
+                        <field name="artista_id" placeholder="Nome do artista"/>
+                    </h2>
                     <group>
                         <group>
                             <field name="tipo_artista"/>
@@ -55,12 +53,21 @@
                         </group>
                     </group>
                     <group>
-                        <field name="responsavel_id"/>
-                        <field name="lanches"/>
-                        <field name="cortesias"/>
-                        <field name="consumacao"/>
-                        <field name="detalhes_consumacao"
-                               attrs="{'invisible': [('consumacao', '=', 'padrao')]}"/>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="responsavel_id"/>
+                            <field name="lanches"/>
+                            <field name="cortesias"/>
+                            <field name="consumacao"/>
+                            <field name="detalhes_consumacao"
+                                   attrs="{'invisible': [('consumacao', '=', 'padrao')]}"/>
+                        </group>
+                        <group>
+                            <field name="cache"/>
+                            <field name="cache_ext"/>
+                            <field name="data_extra_combinada"/>
+                        </group>
                     </group>
                 </sheet>
             </form>

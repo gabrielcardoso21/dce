@@ -71,7 +71,10 @@ class Atracao(models.Model):
     def _compute_cache_fmt(self):
         for atracao in self:
             if atracao.cache:
-                atracao.cache_fmt = str(atracao.cache).replace('.', ',')
+                l = str(atracao.cache).split('.')
+                if len(l[1]) == 1:
+                    l[1] += '0'
+                atracao.cache_fmt = '%s,%s' % tuple(l)
     
     display_name = fields.Char(
         string=u'Nome do registro',
