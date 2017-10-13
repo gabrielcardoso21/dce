@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2017 Gabriel Cardoso de Faria
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record model="ir.ui.view" id="atracao_tree_view">
+        <field name="name">atracao.tree</field>
+        <field name="model">atracao</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="artista_id"/>
+                <field name="tipo_artista"/>
+                <field name="estilo_musical"/>
+                <field name="local"/>
+                <field name="horario_inicio" widget="float_time"/>
+                <field name="horario_termino" widget="float_time"/>
+                <field name="cache"/>
+                <field name="lanches"/>
+                <field name="cortesias"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="atracao_form_view">
+        <field name="name">atracao.form</field>
+        <field name="model">atracao</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="%(report_atracao_py3o)d" string="Gerar Contrato" type="action" class="oe_stat_button" 
+                                icon="fa-file-text"/>
+                    </div>
+                    <h1>
+                        <field name="festa_id" placeholder="Nome da festa"/>
+                    </h1>
+                    <h2>
+                        <field name="artista_id" placeholder="Nome do artista"/>
+                    </h2>
+                    <group>
+                        <group>
+                            <field name="tipo_artista"/>
+                            <field name="estilo_musical"/>
+                            <field name="local"/>
+                        </group>
+                        <group>
+                            <field name="data"/>
+                            <field name="horario_inicio" widget="float_time"/>
+                            <field name="horario_termino" widget="float_time"/>
+                            <field name="horario_passagem" widget="float_time" 
+                                   attrs="{'invisible': [('tipo_artista', '=', 'dj')]}"/>
+                        </group>
+                    </group>
+                    <group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="responsavel_id"/>
+                            <field name="lanches"/>
+                            <field name="cortesias"/>
+                            <field name="consumacao"/>
+                            <field name="detalhes_consumacao"
+                                   attrs="{'invisible': [('consumacao', '=', 'padrao')]}"/>
+                        </group>
+                        <group>
+                            <field name="cache"/>
+                            <field name="cache_ext"/>
+                            <field name="data_extra_combinada"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="lista_atracoes_action">
+        <field name="name">Atrações</field>
+        <field name="res_model">atracao</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+
+    <menuitem name="Atrações" id="lista_atracoes" parent="planejamento_eventos"
+              action="lista_atracoes_action"/>
+
+</odoo>

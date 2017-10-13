@@ -86,11 +86,13 @@ class Evento(models.Model):
         string=u'Responsáveis',
         comodel_name='responsavel',
         inverse_name='eventos_responsavel',
+        relation='evento_responsavel_rel',
     )
     ouvidoria_ids = fields.Many2many(
         string=u'Ouvidoria',
         comodel_name='responsavel',
         inverse_name='eventos_ouvidoria',
+        relation='evento_ouvidoria_rel',
         domain=[('sexo', '=', 'feminino')]
     )
     promocao = fields.Text(
@@ -117,7 +119,7 @@ class Evento(models.Model):
         digits=(16, 2),
         default=0.00,
     )
-    
+
     @api.depends('atracao_pista_ids.cache',
                  'atracao_cultural_ids.cache',
                  'atracao_rancho_ids.cache')
@@ -143,170 +145,3 @@ class Evento(models.Model):
         for evento in self:
             evento.state = 'confirmado'
 
-
-class Atracao(models.Model):
-    _name = 'atracao'
-    _order = 'data, id desc'
-
-    festa_id = fields.Many2one(
-        string=u'Festa: ',
-        comodel_name='evento',
-    )
-    artista_id = fields.Many2one(
-        string=u'Artista: ',
-        comodel_name='artista',
-    )
-    tipo_artista = fields.Selection(
-        related='artista_id.tipo'
-    )
-    estilo_musical = fields.Selection(
-        related='artista_id.estilo_musical'
-    )
-    data = fields.Date(
-        string=u'Data: ',
-        related='festa_id.data',
-    )
-    local = fields.Selection(
-        string=u'Local: ',
-        selection=[
-            ('pista', u'Pista'),
-            ('cultural', u'Cultural'),
-            ('rancho', u'Rancho'),
-        ],
-    )
-    horario_inicio = fields.Float(
-        string=u'Horário de Início: ',
-        digits=(2, 2),
-    )
-    horario_termino = fields.Float(
-        string=u'Horário de Término: ',
-        digits=(2, 2),
-    )
-    cache = fields.Float(
-        string=u'Cache: ',
-        digits=(16, 2),
-    )
-    data_extra_combinada = fields.Boolean(
-        string=u'Data extra combinada?',
-    )
-    responsavel_id = fields.Many2one(
-        string=u'Responsável: ',
-        comodel_name='responsavel',
-    )
-    lanches = fields.Integer(
-        string=u'Lanches: ',
-    )
-    cortesias = fields.Integer(
-        string=u'Cortesias: ',
-        default=0,
-    )
-    consumacao = fields.Selection(
-        string=u'Consumação: ',
-        selection=[
-            ('padrao', 'Padrão'),
-            ('especial', 'Especial'),
-        ],
-        default='padrao',
-    )
-    detalhes_consumacao = fields.Char(
-        string=u'Detalhes da consumação: ',
-    )
-
-    @api.onchange('artista_id')
-    def get_informacoes_padrao(self):
-        if self.artista_id:
-            self.lanches = self.artista_id.integrantes
-            self.cortesias = self.artista_id.cortesias
-
-
-class Artista(models.Model):
-    _name = 'artista'
-
-    apresentacao_ids = fields.One2many(
-        string=u'Apresentações: ',
-        comodel_name='atracao',
-        inverse_name='artista_id'
-    )
-    name = fields.Char(
-        string=u'Nome Artístico: '
-    )
-    tipo = fields.Selection(
-        string=u'Tipo de músico: ',
-        selection=[
-            ('banda', u'Banda'),
-            ('dj', u'DJ'),
-        ]
-    )
-    estilo_musical = fields.Selection(
-        string=u'Estilo Musical: ',
-        selection=[
-            ('funk', u'Funk'),
-            ('eletronico', u'Eletrônico'),
-            ('funk_eletronico', u'Funk/Eletrônico'),
-            ('sertanejo', u'Sertanejo'),
-            ('pop', u'Pop'),
-            ('pop_rock', u'Pop/Rock'),
-            ('samba_rock', u'Samba/Rock'),
-            ('rock', u'Rock'),
-            ('axe', u'Axé'),
-            ('pagode', u'Pagode'),
-            ('groove', u'Groove'),
-        ],
-    )
-    integrantes = fields.Integer(
-        string=u'Integrantes: ',
-    )
-    cortesias = fields.Integer(
-        string=u'Cortesias: ',
-        default=0,
-    )
-    contato = fields.Char(
-        string=u'Contato: ',
-    )
-    nome_contato = fields.Char(
-        string=u'Falar com: '
-    )
-    tipo_contato = fields.Selection(
-        string=u'Tipo do Contato: ',
-        selection=[
-            ('empresario', u'Empresário'),
-            ('artista', u'Artista'),
-            ('agencia', u'Agência')
-        ]
-    )
-
-    @api.onchange('apresentacao_ids')
-    def _compute_cortesias(self):
-        for artista in self:
-            if artista.apresentacao_ids:
-                artista.cortesias = artista.apresentacao_ids[-1].cortesias
-
-
-class Responsavel(models.Model):
-    _name = 'responsavel'
-
-    name = fields.Char(
-        string=u'Nome',
-    )
-
-    eventos_responsavel = fields.Many2many(
-        string=u'Festas que foi responsável',
-        comodel_name='evento',
-        inverse_name='responsaveis',
-        relation='evento_responsavel_rel',
-    )
-    eventos_ouvidoria = fields.Many2many(
-        string=u'Festas que foi de ouvidoria',
-        comodel_name='evento',
-        inverse_name='ouvidoria_ids',
-        relation='evento_ouvidoria_rel',
-    )
-
-    sexo = fields.Selection(
-        string=u'Sexo: ',
-        selection=[
-            ('masculino', 'Masculino'),
-            ('feminino', 'Feminino'),
-        ],
-        default='masculino',
-    )

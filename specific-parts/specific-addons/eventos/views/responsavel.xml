@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2017 Gabriel Cardoso de Faria
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record model="ir.ui.view" id="responsavel_form_view">
+        <field name="name">responsavel.form</field>
+        <field name="model">responsavel</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="sexo"/>
+                        <field name="eventos_responsavel" widget="many2many_tags"/>
+                        <field name="eventos_ouvidoria" widget="many2many_tags"
+                               attrs="{'invisible': [('sexo', '=', 'masculino')]}"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="responsavel_tree_view">
+        <field name="name">responsavel.tree</field>
+        <field name="model">responsavel</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="sexo"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="lista_responsaveis_action">
+        <field name="name">Responsáveis</field>
+        <field name="res_model">responsavel</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+
+    <menuitem name="Responsáveis" id="lista_responsaveis" parent="planejamento_eventos"
+              action="lista_responsaveis_action"/>
+</odoo>
