@@ -10,10 +10,14 @@
     'license': 'AGPL-3',
     'author': 'Gabriel Cardoso de Faria',
     'depends': [
+        'report_py3o',
     ],
     'data': [
         'security/security.xml',
         'security/ir.model.access.csv',
+        
+        'report/report_atracao.xml',
+        
         'views/evento.xml',
         'views/atracao.xml',
         'views/artista.xml',

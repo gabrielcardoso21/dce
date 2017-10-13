@@ -18,6 +18,7 @@
                 <field name="cache"/>
                 <field name="lanches"/>
                 <field name="cortesias"/>
+                <button name="%(report_atracao_py3o)d" string="Gerar Contrato" type="action"/>
             </tree>
         </field>
     </record>
@@ -32,9 +33,10 @@
                         <field name="festa_id"/>
                         <group>
                             <field name="artista_id"/>
+                            <field name="cache"/>
                         </group>
                         <group>
-                            <field name="cache"/>
+                            <field name="cache_ext"/>
                             <field name="data_extra_combinada"/>
                         </group>
                     </group>
@@ -48,6 +50,8 @@
                             <field name="data"/>
                             <field name="horario_inicio" widget="float_time"/>
                             <field name="horario_termino" widget="float_time"/>
+                            <field name="horario_passagem" widget="float_time" 
+                                   attrs="{'invisible': [('tipo_artista', '=', 'dj')]}"/>
                         </group>
                     </group>
                     <group>
@@ -62,5 +66,16 @@
             </form>
         </field>
     </record>
+
+    <record model="ir.actions.act_window" id="lista_atracoes_action">
+        <field name="name">Atrações</field>
+        <field name="res_model">atracao</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+
+    <menuitem name="Atrações" id="lista_atracoes" parent="planejamento_eventos"
+              action="lista_atracoes_action"/>
 
 </odoo>

@@ -10,8 +10,16 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
+                    <div>
+                        <h1>
+                            <label for="name" class="oe_inline"/>
+                            <field name="name"/>
+                            <br/>
+                            <label for="nome_completo" class="oe_inline"/>
+                            <field name="nome_completo"/>
+                        </h1>
+                    </div>
                     <group>
-                        <field name="name"/>
                         <group>
                             <field name="tipo"/>
                         </group>
@@ -23,11 +31,17 @@
                         <group>
                             <field name="integrantes"/>
                             <field name="cortesias"/>
+                            <field name="cpf"/>
+                            <field name="rg"/>
+                            <field name="endereco"/>
                         </group>
                         <group>
                             <field name="contato"/>
                             <field name="nome_contato"/>
+                            <field name="sexo"/>
                             <field name="tipo_contato"/>
+                            <field name="bairro"/>
+                            <field name="cep"/>
                         </group>
                     </group>
                     <notebook>

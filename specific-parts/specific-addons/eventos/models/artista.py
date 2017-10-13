@@ -16,11 +16,36 @@ class Artista(models.Model):
     name = fields.Char(
         string=u'Nome Artístico: '
     )
+    nome_completo = fields.Char(
+        string=u'Nome Completo: ',
+    )
+    cpf = fields.Char(
+        string=u'CPF: ',
+    )
+    rg = fields.Char(
+        string=u'RG: ',
+    )
+    cep = fields.Char(
+        string=u'CEP: ',
+    )
+    endereco = fields.Char(
+        string=u'Endereço: ',
+    )
+    bairro = fields.Char(
+        string=u'Bairro',
+    )
     tipo = fields.Selection(
         string=u'Tipo de músico: ',
         selection=[
             ('banda', u'Banda'),
             ('dj', u'DJ'),
+        ]
+    )
+    sexo = fields.Selection(
+        string=u'Sexo: ',
+        selection=[
+            ('o', 'Masculino'),
+            ('a', 'Feminino'),
         ]
     )
     estilo_musical = fields.Selection(
