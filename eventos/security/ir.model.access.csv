@@ -1,0 +1,10 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+administrador_evento,administrador_evento,model_evento,group_eventos,1,1,1,1
+acesso_evento,acesso_evento,model_evento,,1,0,0,0
+administrador_atracao,administrador_atracao,model_atracao,group_eventos,1,1,1,1
+acesso_atracao,acesso_atracao,model_atracao,,1,0,0,0
+administrador_artista,administrador_artista,model_artista,group_eventos,1,1,1,1
+acesso_artista,acesso_artista,model_artista,,1,0,0,0
+administrador_responsavel,administrador_responsavel,model_responsavel,group_eventos,1,1,1,1
+acesso_responsavel,acesso_responsavel,model_responsavel,,1,0,0,0
+
