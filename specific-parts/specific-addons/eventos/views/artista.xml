@@ -60,6 +60,8 @@
                                     <field name="endereco"/>
                                     <field name="bairro"/>
                                     <field name="cep"/>
+                                    <field name="cidade"/>
+                                    <field name="uf"/>
                                 </group>
                             </group>
                         </page>
