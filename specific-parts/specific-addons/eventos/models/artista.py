@@ -28,6 +28,14 @@ class Artista(models.Model):
     cep = fields.Char(
         string=u'CEP: ',
     )
+    cidade = fields.Char(
+        string=u'Cidade: ',
+        default='Itajuba'
+    )
+    uf = fields.Char(
+        string=u'UF: ',
+        default='MG'
+    )
     endereco = fields.Char(
         string=u'Endereço: ',
     )

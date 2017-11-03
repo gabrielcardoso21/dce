@@ -17,6 +17,11 @@
         'security/ir.model.access.csv',
         
         'report/report_atracao.xml',
+
+        'data/artista.csv',
+        'data/responsavel.csv',
+        'data/evento.csv',
+        'data/atracao.csv',
         
         'views/evento.xml',
         'views/atracao.xml',

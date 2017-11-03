@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2017 Gabriel Cardoso de Faria
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record model="ir.ui.view" id="post_calendar_view">
+      <field name="name">post.calendar</field>
+      <field name="model">post</field>
+      <field name="arch" type="xml">
+        <calendar quick_add="false"
+                  date_start="postar_em"
+                  date_end="postado_em"
+                  mode="week,month"
+                  color="state">
+          <field name="name"/>
+        </calendar>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="post_form_view">
+        <field name="name">post.form</field>
+        <field name="model">post</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="agendar" type="object" states="novo" string="Agendar"/>
+                    <button name="postado" type="object" states="agendado" string="Postado"/>
+                    <button name="em_atraso" type="object" states="agendado" string="Atrasado"/>
+                    <button name="post_atrasado" type="object" states="atrasado" string="Postado em Atraso"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div>
+                        <h1>
+                            <field name="name" placeholder="Nome do Post"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="tipo"/>
+                            <field name="festa_id" attrs="{'invisible': [('tipo', '!=', 'festa')]}"/>
+                            <field name="pagina"/>
+                        </group>
+                        <group>
+                            <field name="responsavel_post"/>
+                            <field name="postar_em"/>
+                            <field name="postado_em" readonly="True"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Arte">
+                            <group>
+                                <group>
+                                    <field name="responsavel_arte"/>
+                                    <field name="arte"/>
+                                    <field name="terceirizada"/>
+                                </group>
+                                <group attrs="{'invisible': [('terceirizada', '=', False)]}">
+                                    <field name="empresa" />
+                                    <field name="custo"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Texto">
+                            <group>
+                                <field name="responsavel_texto"/>
+                                <field name="texto"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="post_tree_view">
+        <field name="name">post.tree</field>
+        <field name="model">post</field>
+        <field name="arch" type="xml">
+            <tree string="Post">
+                <field name="name"/>
+                <field name="postar_em"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="posts_action">
+        <field name="name">Posts</field>
+        <field name="res_model">post</field>
+        <field name="view_mode">calendar,tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+
+    <menuitem name="Comunicação" id="menu_comunicacao"/>
+
+    <menuitem name="Planejamento" id="planejamento_comunicacao" parent="menu_comunicacao"/>
+
+    <menuitem name="Posts" id="posts_comunicacao" parent="planejamento_comunicacao"
+              action="posts_action"/>
+
+</odoo>
