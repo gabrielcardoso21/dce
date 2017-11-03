@@ -11,6 +11,7 @@
     'author': 'Gabriel Cardoso de Faria',
     'depends': [
         'report_py3o',
+        'web_responsive',
     ],
     'data': [
         'security/security.xml',
