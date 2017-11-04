@@ -8,6 +8,7 @@ from odoo import api, fields, models, _
 class Evento(models.Model):
 
     _name = 'evento'
+    _inherit = ['mail.thread']
     _description = 'Evento'
 
     name = fields.Char(

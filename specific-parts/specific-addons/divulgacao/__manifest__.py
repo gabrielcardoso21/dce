@@ -16,6 +16,7 @@
     'data': [
         'security/security.xml',
         'security/ir.model.access.csv',
+
         'views/eventos_confirmados.xml',
     ],
     'demo': [

@@ -30,7 +30,7 @@
                 <sheet>
                     <div class="oe_button_box" name="button_box">
                         <button name="%(report_atracao_py3o)d" string="Gerar Contrato" type="action" class="oe_stat_button" 
-                                icon="fa-file-text"/>
+                                icon="fa-file-text" groups="eventos.group_eventos"/>
                     </div>
                     <h1>
                         <field name="festa_id" placeholder="Nome da festa"/>
