@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2017 Gabriel Cardoso de Faria
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record id="group_divulgacao" model="res.groups">
+        <field name="name">Membro de Divulgaçao</field>
+    </record>
+
+</odoo>

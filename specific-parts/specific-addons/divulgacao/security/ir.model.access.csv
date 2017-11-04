@@ -1,0 +1,5 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+divulgacao_evento,divulgacao_evento,eventos.model_evento,group_divulgacao,1,0,0,0
+divulgacao_atracao,divulgacao_atracao,eventos.model_atracao,group_divulgacao,1,0,0,0
+divulgacao_artista,divulgacao_artista,eventos.model_artista,group_divulgacao,1,0,0,0
+divulgacao_responsavel,divulgacao_responsavel,eventos.model_responsavel,group_divulgacao,1,0,0,0

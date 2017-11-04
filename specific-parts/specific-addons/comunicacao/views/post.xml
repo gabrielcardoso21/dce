@@ -93,7 +93,7 @@
         <field name="context">{}</field>
     </record>
 
-    <menuitem name="Comunicação" id="menu_comunicacao"/>
+    <menuitem name="Comunicação" id="menu_comunicacao" groups="group_comunicacao"/>
 
     <menuitem name="Planejamento" id="planejamento_comunicacao" parent="menu_comunicacao"/>
 

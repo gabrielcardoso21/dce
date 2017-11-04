@@ -34,3 +34,9 @@ class Responsavel(models.Model):
         default='masculino',
     )
 
+    user_id = fields.Many2one(
+        string=u'Usuario: ',
+        comodel_name='res.users',
+        ondelete='set null',
+    )
+

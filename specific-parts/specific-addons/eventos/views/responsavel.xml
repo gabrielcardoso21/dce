@@ -16,6 +16,7 @@
                         <field name="eventos_responsavel" widget="many2many_tags"/>
                         <field name="eventos_ouvidoria" widget="many2many_tags"
                                attrs="{'invisible': [('sexo', '=', 'masculino')]}"/>
+                        <field name="user_id"/>
                     </group>
                 </sheet>
             </form>

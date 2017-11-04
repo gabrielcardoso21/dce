@@ -3,20 +3,20 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
-    'name': 'Comunicação',
+    'name': 'Divulgação',
     'description': """
-        Gerência de Comunicação""",
+        Gerência de Divulgação""",
     'version': '10.0.1.0.0',
     'license': 'AGPL-3',
     'author': 'Gabriel Cardoso de Faria',
     'depends': [
         'eventos',
+        'comunicacao',
     ],
     'data': [
         'security/security.xml',
         'security/ir.model.access.csv',
-        'views/post.xml',
-        'views/empresa.xml',
+        'views/eventos_confirmados.xml',
     ],
     'demo': [
     ],

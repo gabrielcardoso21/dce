@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2017 Gabriel Cardoso de Faria
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record model="ir.ui.view" id="eventos_confirmados_calendar_view">
+      <field name="name">eventos.confirmados.calendar</field>
+      <field name="model">evento</field>
+      <field name="inherit_id" ref="eventos.evento_calendar_view"/>
+      <field name="mode">primary</field>
+      <field name="arch" type="xml">
+        <calendar position="attributes">
+            <attribute name="create">false</attribute>
+            <attribute name="edit">false</attribute>
+            <attribute name="delete">false</attribute>
+            <attribute name="color">publico_alvo</attribute>
+            <attribute name="event_open_popup" eval="False"/>
+        </calendar>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="eventos_confirmados_tree_view">
+        <field name="name">eventos.confirmados.tree</field>
+        <field name="model">evento</field>
+        <field name="inherit_id" ref="eventos.evento_tree_view"/>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <tree position="attributes">
+                <attribute name="create">false</attribute>
+                <attribute name="edit">false</attribute>
+                <attribute name="delete">false</attribute>
+                <attribute name="readonly" eval="True"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="eventos_confirmados_form_view">
+        <field name="name">eventos.confirmados.form</field>
+        <field name="model">evento</field>
+        <field name="inherit_id" ref="eventos.evento_form_view"/>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <form position="attributes">
+                <attribute name="create">false</attribute>
+                <attribute name="edit">false</attribute>
+                <attribute name="delete">false</attribute>
+                <attribute name="readonly" eval="True"/>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="calendario_divulgacao_action">
+        <field name="name">Calendário</field>
+        <field name="res_model">evento</field>
+        <field name="view_mode">calendar,tree,form</field>
+        <field name="domain">[('state', '=', 'confirmado')]</field>
+        <field name="context">{}</field>
+    </record>
+
+    <record model="ir.actions.act_window.view" id="divulgacao_action_calendar_view">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">calendar</field>
+        <field name="view_id" ref="eventos_confirmados_calendar_view"/>
+        <field name="act_window_id" ref="calendario_divulgacao_action"/>
+    </record>
+
+    <record model="ir.actions.act_window.view" id="divulgacao_action_tree_view">
+        <field name="sequence" eval="2"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="eventos_confirmados_tree_view"/>
+        <field name="act_window_id" ref="calendario_divulgacao_action"/>
+    </record>
+
+    <record model="ir.actions.act_window.view" id="divulgacao_action_form_view">
+        <field name="sequence" eval="3"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="eventos_confirmados_form_view"/>
+        <field name="act_window_id" ref="calendario_divulgacao_action"/>
+    </record>
+
+    <menuitem name="Divulgaçao" id="menu_divulgacao" groups="group_divulgacao"/>
+
+    <menuitem name="Planejamento" id="planejamento_divulgacao" parent="menu_divulgacao"/>
+
+    <menuitem name="Calendário" id="calendario_divulgacao" parent="planejamento_divulgacao"
+              action="calendario_divulgacao_action"/>
+
+</odoo>

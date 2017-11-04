@@ -116,7 +116,7 @@
         <field name="context">{}</field>
     </record>
 
-    <menuitem name="Eventos" id="menu_eventos"/>
+    <menuitem name="Eventos" id="menu_eventos" groups="group_eventos"/>
 
     <menuitem name="Planejamento" id="planejamento_eventos" parent="menu_eventos"/>
 

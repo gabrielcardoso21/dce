@@ -1,0 +1,5 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+administrador_empresa,administrador_empresa,model_empresa,group_comunicacao,1,1,1,1
+acesso_empresa,acesso_empresa,model_empresa,,1,0,0,0
+administrador_post,administrador_post,model_post,group_comunicacao,1,1,1,1
+acesso_post,acesso_post,model_post,,1,0,0,0
